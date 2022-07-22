@@ -65,7 +65,7 @@ Add adds an element to the set, optionally supports chaining
 func (s *Set[T]) Difference(s2 *Set[T]) *Set[T]
 ```
 
-Difference returns the combined elements of both sets
+Difference returns the set of elements not in the other set
 
 ### func \(\*Set\[T\]\) Empty
 
@@ -145,7 +145,7 @@ Subset returns true if the set is a subset of another set
 func (s *Set[T]) Union(s2 *Set[T]) *Set[T]
 ```
 
-Union returns the set of elements not in the other set
+Union returns the combined elements of both sets
 
 
 

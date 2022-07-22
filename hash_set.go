@@ -100,7 +100,7 @@ func (s *Set[T]) Intersection(s2 *Set[T]) *Set[T] {
 	return i
 }
 
-// Union returns the set of elements not in the other set
+// Union returns the combined elements of both sets
 func (s *Set[T]) Union(s2 *Set[T]) *Set[T] {
 	u := New[T]()
 	s.Foreach(func(el T) {
@@ -112,7 +112,7 @@ func (s *Set[T]) Union(s2 *Set[T]) *Set[T] {
 	return u
 }
 
-// Difference returns the combined elements of both sets
+// Difference returns the set of elements not in the other set
 func (s *Set[T]) Difference(s2 *Set[T]) *Set[T] {
 	d := New[T]()
 	s.Foreach(func(el T) {

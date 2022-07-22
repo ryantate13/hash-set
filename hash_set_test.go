@@ -243,6 +243,23 @@ func TestSet_Intersection(t *testing.T) {
 	}
 }
 
+func TestSet_Union(t *testing.T) {
+	tests := []struct{ it string }{
+		{"returns the combined elements of both sets"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.it, func(t *testing.T) {
+			s1 := Of(1, 2, 3, 4, 5, 6, 7, 8)
+			s2 := Of(5, 6, 7, 8, 9, 10, 11, 12)
+			u := Of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+			require.Equal(t, u, s1.Union(s2))
+			require.Equal(t, u, s2.Union(s1))
+			require.Equal(t, s1, s1.Union(s1))
+			require.Equal(t, s2, s2.Union(s2))
+		})
+	}
+}
+
 func TestSet_Difference(t *testing.T) {
 	tests := []struct{ it string }{
 		{"returns the set of elements not in the other set"},
@@ -257,23 +274,6 @@ func TestSet_Difference(t *testing.T) {
 			require.Equal(t, d2, s2.Difference(s1))
 			require.Equal(t, Of[int](), s1.Difference(s1))
 			require.Equal(t, Of[int](), s2.Difference(s2))
-		})
-	}
-}
-
-func TestSet_Union(t *testing.T) {
-	tests := []struct{ it string }{
-		{"returns the combined elements of both sets"},
-	}
-	for _, tt := range tests {
-		t.Run(tt.it, func(t *testing.T) {
-			s1 := Of(1, 2, 3, 4, 5, 6, 7, 8)
-			s2 := Of(5, 6, 7, 8, 9, 10, 11, 12)
-			u := Of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-			require.Equal(t, u, s1.Union(s2))
-			require.Equal(t, u, s2.Union(s1))
-			require.Equal(t, s1, s1.Union(s1))
-			require.Equal(t, s2, s2.Union(s2))
 		})
 	}
 }
